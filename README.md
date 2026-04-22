@@ -1,101 +1,36 @@
-# 🎮 Ultimate Tic-Tac-Toe
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-A feature-rich, beautifully designed Tic-Tac-Toe game built with pure HTML, CSS & JavaScript.
+## Getting Started
 
-**Created by Prathik**
-
----
-
-## ✨ Features
-
-### 🕹️ Game Modes
-| Mode | Description |
-|------|-------------|
-| **👥 vs Player** | Classic local 2-player mode |
-| **🤖 vs AI** | Play against an AI with 3 difficulty levels |
-| **🌐 Online** | Play with anyone worldwide via private 4-digit room codes |
-
-### 🤖 AI Difficulty
-- **Easy** — Random moves, great for beginners
-- **Medium** — Blocks your wins and seizes its own opportunities
-- **Hard** — Unbeatable AI powered by the **Minimax algorithm**
-
-### 🌐 Online Multiplayer
-- **Create Room** — Generates a unique 4-digit code to share with a friend
-- **Join Room** — Enter a friend's code to connect instantly
-- Powered by **PeerJS** (WebRTC) — peer-to-peer, no server required
-- Real-time move syncing with disconnect detection
-
-### 🎯 Gameplay
-- **Undo** — Step back moves (disabled in online mode)
-- **Round Counter** — Tracks the current round
-- **Win Streaks** — 🔥 badge for consecutive wins
-- **Move Timer** — Optional 15-second per-turn timer with animated progress bar
-- **Scoreboard** — Glowing active-player indicators
-
-### 🎨 Visual & Audio
-- 🎉 **Confetti** explosion on wins
-- 📳 **Board shake** animation on draws
-- 🔊 **Sound effects** — click, win fanfare, draw, and undo (Web Audio API)
-- 👻 **Hover previews** — ghosted mark preview on empty cells
-- ✨ **Glow effects** and smooth transitions
-- 📱 **Fully responsive** — works on mobile and desktop
-
----
-
-## 🚀 Getting Started
-
-### Play Locally
-Open `tic tac toe.html` in any modern browser — no build tools or dependencies required.
+First, run the development server:
 
 ```bash
-open "tic tac toe.html"
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### Play Online
-1. Both players open the file in their browsers
-2. **Player 1:** Select **🌐 Online** → **Create Room** → share the 4-digit code
-3. **Player 2:** Select **🌐 Online** → **Join Room** → enter the code → **Connect**
-4. Game starts automatically once connected!
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-> **Note:** Online mode requires an internet connection for initial PeerJS signaling. After that, data flows directly between players (P2P).
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
----
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## 🛠️ Tech Stack
+## Learn More
 
-| Technology | Purpose |
-|------------|---------|
-| **HTML5** | Structure & layout |
-| **CSS3** | Styling, animations, responsive design |
-| **JavaScript** | Game logic, AI engine (Minimax), audio |
-| **PeerJS** | Peer-to-peer online multiplayer (WebRTC) |
-| **Web Audio API** | Sound effects without external files |
-| **Canvas API** | Confetti particle system |
+To learn more about Next.js, take a look at the following resources:
 
----
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 📁 Project Structure
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-```
-├── tic tac toe.html       # Complete game (single self-contained file)
-└── tic-tac-toe-README.md  # This file
-```
+## Deploy on Vercel
 
----
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## 🎮 Controls
-
-| Action | How |
-|--------|-----|
-| Place mark | Click/tap an empty cell |
-| Undo move | **↩ Undo** button |
-| Reset round | **🔄 Reset** button |
-| Back to menu | **⚙ Menu** button |
-| Copy room code | **Copy** button on room code display |
-
----
-
-## 📄 License
-
-This project is open source and available for personal use.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
