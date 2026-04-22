@@ -34,6 +34,27 @@ export function useAuth() {
     return { error };
   };
 
+  const signInWithEmail = async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    return { data, error };
+  };
+
+  const signUpWithEmail = async (email: string, password: string, username: string) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          username,
+        },
+      },
+    });
+    return { data, error };
+  };
+
   const signInAnonymously = async () => {
     const { data, error } = await supabase.auth.signInAnonymously();
     return { data, error };
@@ -48,6 +69,8 @@ export function useAuth() {
     user,
     loading,
     signInWithGoogle,
+    signInWithEmail,
+    signUpWithEmail,
     signInAnonymously,
     signOut,
   };

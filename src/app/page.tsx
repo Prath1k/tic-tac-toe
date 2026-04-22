@@ -9,6 +9,8 @@ import { useGame } from '@/hooks/useGame';
 import { useAI } from '@/hooks/useAI';
 import { useMultiplayer } from '@/hooks/useMultiplayer';
 import { useAuth } from '@/hooks/useAuth';
+import { useSound } from '@/hooks/useSound';
+import { Confetti } from '@/components/ui/Confetti';
 import { GameMode, Difficulty, Player } from '@/types/game';
 
 export default function TicTacToePage() {
@@ -19,19 +21,46 @@ export default function TicTacToePage() {
     setPlayerNames, setRoundNumber 
   } = useGame();
   
+  const { playMove, playWin, playDraw } = useSound();
   const { getAIMove } = useAI();
   const { 
     roomCode, lobbyStatus, isConnected, myRole, 
     createRoom, joinRoom, sendData, destroyPeer 
   } = useMultiplayer();
   
-  const { user, signInAnonymously, signInWithGoogle } = useAuth();
+  const { user, signOut } = useAuth();
 
   // Local UI State
   const [screen, setScreen] = useState<'setup' | 'game'>('setup');
   const [gameMode, setGameMode] = useState<GameMode>('player');
   const [difficulty, setDifficulty] = useState<Difficulty>('easy');
   const [isAiThinking, setIsAiThinking] = useState(false);
+
+  // Sync player name with user info
+  useEffect(() => {
+    if (user && screen === 'setup') {
+      const name = user.user_metadata?.username || user.email?.split('@')[0] || 'Player 1';
+      setPlayerNames(prev => ({ ...prev, X: name }));
+    }
+  }, [user, screen, setPlayerNames]);
+
+  // Audio Effects
+  useEffect(() => {
+    if (screen === 'game') {
+      const moveCount = board.filter(cell => cell !== null).length;
+      if (moveCount > 0 && gameActive) {
+        playMove();
+      }
+      
+      if (!gameActive) {
+        if (winningLine) {
+          playWin();
+        } else if (board.every(cell => cell !== null)) {
+          playDraw();
+        }
+      }
+    }
+  }, [board, gameActive, winningLine, screen, playMove, playWin, playDraw]);
 
   // Handle Game Start
   const handleStartGame = (config: {
@@ -68,11 +97,38 @@ export default function TicTacToePage() {
 
   return (
     <main>
-      <h1>Tic-Tac-Toe <span>Next.js Edition</span></h1>
+      <Confetti active={!!winningLine} />
+      
+      <div className="header-auth">
+        {user ? (
+          <div className="user-pill glass">
+            <div className="avatar">
+              {(user.user_metadata?.username || user.email)?.[0].toUpperCase()}
+            </div>
+            <span className="user-name">
+              {user.user_metadata?.username || user.email?.split('@')[0]}
+            </span>
+            <button 
+              onClick={() => signOut()} 
+              className="auth-link" 
+              style={{ fontSize: '0.75rem', marginLeft: '10px', background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <a href="/login" className="user-pill glass auth-link" style={{ fontSize: '0.85rem' }}>
+            Sign In
+          </a>
+        )}
+      </div>
+
+      <h1>Tic-Tac-Toe</h1>
 
       {screen === 'setup' ? (
         <SetupScreen 
           onStart={handleStartGame}
+          initialPlayerX={playerNames.X}
           onlineLobbyContent={
             <OnlineLobby 
               roomCode={roomCode}
@@ -126,8 +182,6 @@ export default function TicTacToePage() {
           </div>
         </div>
       )}
-
-      {/* Confetti and other global effects would go here */}
     </main>
   );
 }

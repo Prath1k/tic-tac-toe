@@ -28,7 +28,7 @@ export const OnlineLobby: React.FC<OnlineLobbyProps> = ({
   };
 
   return (
-    <div className="online-lobby visible" id="onlineLobby">
+    <div className="online-lobby" id="onlineLobby">
       <div className="lobby-options">
         <button 
           className={`lobby-btn ${tab === 'create' ? 'active' : ''}`} 
@@ -45,37 +45,44 @@ export const OnlineLobby: React.FC<OnlineLobbyProps> = ({
       </div>
 
       {tab === 'create' ? (
-        <div id="createPanel">
+        <div id="createPanel" style={{ animation: 'setup-slide 0.3s ease' }}>
           <div className="room-code-display" id="roomCodeBox">
-            <div className="label">Your Room Code</div>
+            <div className="label" style={{ fontSize: '0.7rem', color: 'var(--text-muted)', letterSpacing: '2px', marginBottom: '8px' }}>ROOM CODE</div>
             <div className="code" id="roomCodeText">{roomCode || '----'}</div>
             <button 
               className={`copy-btn ${copyText === 'Copied!' ? 'copied' : ''}`} 
               onClick={handleCopy}
+              style={{ position: 'static', marginTop: '10px', background: 'rgba(255,255,255,0.1)', border: 'none', padding: '6px 12px', borderRadius: '8px', color: '#fff', fontSize: '0.7rem', fontWeight: 800, cursor: 'pointer' }}
             >
-              {copyText}
+              {copyText.toUpperCase()}
             </button>
           </div>
-          <div className={`conn-status ${status.includes('Connected') ? 'connected' : 'waiting'}`} id="createStatus">
-            <span className="dot"></span> {status || 'Initializing...'}
+          <div className={`conn-status ${status.includes('Connected') ? 'connected' : 'waiting'}`} style={{ marginTop: '15px', fontSize: '0.8rem', fontWeight: 700, color: status.includes('Connected') ? '#4ade80' : '#fbbf24' }}>
+            {status.toUpperCase() || 'INITIALIZING...'}
           </div>
         </div>
       ) : (
-        <div id="joinPanel">
-          <div className="join-input">
+        <div id="joinPanel" style={{ animation: 'setup-slide 0.3s ease' }}>
+          <div className="join-input" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <input 
               type="text" 
               maxLength={4} 
               placeholder="0000" 
               value={inputCode}
               onChange={(e) => setInputCode(e.target.value.replace(/[^0-9]/g, ''))}
+              style={{ textAlign: 'center', letterSpacing: '10px', fontSize: '1.5rem' }}
             />
-            <button onClick={() => onJoinRoom(inputCode)} disabled={inputCode.length !== 4}>
-              Connect
+            <button 
+              className="start-btn" 
+              style={{ padding: '12px' }}
+              onClick={() => onJoinRoom(inputCode)} 
+              disabled={inputCode.length !== 4}
+            >
+              JOIN ROOM
             </button>
           </div>
-          <div className={`conn-status ${status.includes('Connected') ? 'connected' : 'waiting'}`} id="joinStatus">
-            <span className="dot"></span> <span className="text">{status || 'Enter code to join'}</span>
+          <div className={`conn-status ${status.includes('Connected') ? 'connected' : 'waiting'}`} style={{ marginTop: '15px', fontSize: '0.8rem', fontWeight: 700, color: status.includes('Connected') ? '#4ade80' : '#fbbf24' }}>
+             {status.toUpperCase() || 'ENTER CODE'}
           </div>
         </div>
       )}
