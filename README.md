@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏆 Ultimate Tic-Tac-Toe: Next.js Edition
 
-## Getting Started
+A high-performance, full-stack Tic-Tac-Toe game featuring real-time multiplayer, smart AI, and a premium "Sporty Minimalist" design.
 
-First, run the development server:
+![Demo Placeholder](https://via.placeholder.com/1200x600/0a0a0a/ffffff?text=Ultimate+Tic-Tac-Toe+Premium+UI)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+- **🎮 3 Unique Game Modes**:
+  - **Local Multiplayer**: Play with a friend on the same device.
+  - **vs AI**: Challenge a smart opponent with 3 difficulty levels (Easy, Medium, Hard).
+  - **Online Real-time**: Create or join secret rooms to play with anyone across the globe.
+- **🔐 Secure Authentication**: 
+  - Powered by **Supabase**.
+  - Supports Email/Password registration and **Google OAuth** social login.
+  - Personalized profiles to track your identity.
+- **🎨 Premium UI/UX**:
+  - **Sporty Minimalist Theme**: A clean Black, White, and Red aesthetic.
+  - **Procedural Animations**: Lightweight scale, pulse, and confetti effects.
+  - **Glassmorphism Lite**: Modern container styles with backdrop blurs.
+- **🔊 Immersive Audio**:
+  - **Web Audio API**: Mathematically generated sound effects (No external audio files).
+  - Custom move, win, and draw sounds.
+- **🚀 Vercel Ready**: Fully optimized for one-click deployment.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **Styling**: Vanilla CSS with modern Flex/Grid layouts.
+- **Backend/Auth**: [Supabase](https://supabase.com/)
+- **Icons**: Custom procedural SVG icons and Emojis.
+- **Effects**: HTML5 Canvas for Confetti and Particles.
+- **Audio**: Web Audio API (Oscillators/Gain nodes).
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- Node.js 18+ 
+- A Supabase Project ([Create one here](https://supabase.com/))
+
+### 2. Environment Setup
+Create a `.env` file in the root directory and add your Supabase credentials:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Installation & Run
+```bash
+# Install dependencies
+npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Run the development server
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌍 Deployment
 
-## Learn More
+This project is optimized for **Vercel**. To deploy:
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your code to GitHub.
+2. Import the project into Vercel.
+3. Add your `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` to the Vercel Project Settings.
+4. Update the **Site URL** in your Supabase Auth settings to match your Vercel URL.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📜 License
+This project is open-source and available under the [MIT License](LICENSE).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Built with ❤️ by Prathik 
